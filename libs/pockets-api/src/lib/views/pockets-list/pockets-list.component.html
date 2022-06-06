@@ -1,0 +1,56 @@
+<div class="mt-4 bb_layout_container container-fluid d-block container bb-block__xl bb-layout__content">
+    <div class="m-4 pockets-header" style="display:flex; flex-direction:row; justify-content:space-between;">
+        <bb-header-ui headingType="h1" heading="Pockets"></bb-header-ui>
+        <button
+          *bbIfEntitlements="'Pockets.Goals.create'"
+          bbbutton=""
+          buttonsize="md"
+          class="m-2 btn-primary btn-md btn ng-star-inserted"
+          data-role="btn-icon-primary-md-def"
+          type="button"
+        >
+          <bb-icon-ui
+            class="bb-layout__vertical-nav-item-icon"
+            name="add"
+          ></bb-icon-ui
+          ><span>{{ 'New Pocket' }}</span>
+        </button>
+      </div>
+
+      <ng-container *ngIf="pockets$ | async as pockets">
+        <div
+          *ngFor="let item of pockets"
+          class="parent p-5 card mt-3 mb-3 pockets-container"
+          style="display:flex; flex-direction:row; cursor: pointer;"
+          (click)="navigateToDetails(item.id)"
+        >
+          <div class="pig p-2 pockets-svg">
+            <bootcamp-pocket-svg></bootcamp-pocket-svg>
+          </div>
+          <div class="stats p-3 pockets-data" style="width: 100%;">
+            <h2>{{ item.name }}</h2>
+            <h2>
+              {{ item.funds.amount | currency: 'USD':'symbol':'0.2-2' }} /
+              <span class="bb-text-support">
+                {{ item.goal.amount | currency: 'USD':'symbol':'0.0-0' }}
+              </span>
+            </h2>
+            <bb-progressbar-ui
+              type="primary"
+              [striped]="false"
+              [animated]="false"
+              [showValue]="false"
+              [value]="item.funds.amount / item.goal.amount"
+              [max]="1"
+              height="6px"
+              class="mt-3"
+            >
+            </bb-progressbar-ui>
+            <p class="mt-1 bb-text-support" style="text-align: 'center'">
+              {{ item.funds.amount / item.goal.amount | percent }}
+              completed
+            </p>
+          </div>
+        </div>
+      </ng-container>
+</div>

@@ -1,0 +1,25 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/pockets-api/src",
+  "prefix": "bootcamp",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/pockets-api"],
+      "options": {
+        "jestConfig": "libs/pockets-api/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/pockets-api/**/*.ts",
+          "libs/pockets-api/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

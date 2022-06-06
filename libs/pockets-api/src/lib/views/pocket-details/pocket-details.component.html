@@ -1,0 +1,107 @@
+<ng-container *ngIf="pocketDetails$ | async as pocketDetails">
+  <div class="mt-5">
+    <button
+      bbbutton=""
+      buttonsize="md"
+      class="m-2 mb-4 btn-link-text btn-md btn ng-star-inserted"
+      data-role="btn-icon-link-text-md-def"
+      type="button"
+    >
+      <bb-icon-ui
+        class="bb-layout__vertical-nav-item-icon"
+        name="arrow-back"
+      ></bb-icon-ui
+      ><span> <a [routerLink]="['/pockets']"> Back to pockets </a> </span>
+    </button>
+    <bb-header-ui headingType="h1" [heading]="pocketDetails.name"></bb-header-ui>
+
+    <ng-container *ngIf="pocketDetails">
+      <div class="card">
+        <div class="parent p-5 d-flex">
+          <div class="pig p-2 pocket-svg">
+            <bootcamp-pocket-svg></bootcamp-pocket-svg>
+          </div>
+          <div class="stats p-3 ml-4 pockets-data">
+            <h2>
+              {{ pocketDetails.funds.amount | currency: 'USD':'symbol':'0.2-2' }} /
+              <span class="bb-text-support">
+                {{ pocketDetails.goal.amount | currency: 'USD':'symbol':'0.0-0' }}
+              </span>
+            </h2>
+            <div style="display: flex">
+              <span
+                ><bb-icon-ui
+                  class="bb-layout__vertical-nav-item-icon bb-text-support"
+                  name="calendar"
+                ></bb-icon-ui
+              ></span>
+              <p class="bb-text-support">
+                Goal date: {{ pocketDetails.goalDate | date }}
+              </p>
+            </div>
+
+            <bb-progressbar-ui
+              type="primary"
+              [striped]="false"
+              [animated]="false"
+              [showValue]="false"
+              [value]="pocketDetails.funds.amount / pocketDetails.goal.amount"
+              [max]="1"
+              height="6px"
+            >
+            </bb-progressbar-ui>
+            <p class="mt-1">
+              {{ pocketDetails.funds.amount / pocketDetails.goal.amount | percent }}
+              completed
+            </p>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <ng-container *ngIf="pocketDetails.transactions as transactionsData">
+            <ng-container *ngFor="let data of transactionsData">
+              <div class="bb-subheader bb-text-support bb-block bb-block--md">
+                {{ data.date | date }}
+              </div>
+              <div class="bb-block bb-block--xl">
+                <div class="bb-stack bb-stack--wrap">
+                  <bb-icon-ui
+                    name="savings-accounts"
+                    size="md"
+                    color="savings-account"
+                    backgroundType="square"
+                  ></bb-icon-ui>
+                  <div class="bb-stack__item m-2">
+                    <div class="bb-account-info ng-star-inserted">
+                      <div>{{ data.account }} Account</div>
+                      <div class="bb-text-support">
+                        {{ data.incoming ? 'Incoming' : 'Outgoing' }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bb-stack__break bb-stack__break--xs"></div>
+                  <div
+                    class="bb-stack__item bb-stack__item--push-right bb-stack__item--spacing-none bb-highlight"
+                  >
+                    <span [ngClass]="data.incoming ? 'text-success' : ''">{{
+                      data.incoming ? '+' : '-'
+                    }}</span>
+                    <bb-amount-ui
+                      [currency]="data.amount.currency"
+                      [amount]="data.amount.amount"
+                      [mapCurrency]="true"
+                      [showPlusSign]="false"
+                      [abbreviate]="false"
+                      [ngClass]="data.incoming ? 'text-success' : ''"
+                    ></bb-amount-ui>
+                  </div>
+                </div>
+              </div>
+              <hr />
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>

@@ -17,11 +17,11 @@
 
     <ng-container *ngIf="pocketDetails">
       <div class="card">
-        <div class="parent p-5 d-flex">
+        <div class="parent p-5 d-flex" >
           <div class="pig p-2 pocket-svg">
             <bootcamp-pocket-svg></bootcamp-pocket-svg>
           </div>
-          <div class="stats p-3 ml-4 pockets-data">
+          <div class="stats p-3 ml-4 pockets-data" style="width: 80%;">
             <h2>
               {{ pocketDetails.funds.amount | currency: 'USD':'symbol':'0.2-2' }} /
               <span class="bb-text-support">

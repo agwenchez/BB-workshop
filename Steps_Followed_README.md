@@ -15,16 +15,17 @@ Within the peachtree-bank/src/app/themes directory, I adjusted the colours for t
 
 ### #3. Add a unique font family
 1. Downloaded the `Mukta` font from Google Web Fonts and added it to the peachtree-bank/src/app/themes/peachtree-bank/assets/fonts directory: 
-2. Created the font's font-faces within the peachtree-bank/src/app/themes/peachtree-bank/scss/3-generic folder and imported them as required.
+2. Updated path for assets and fonts within the peachtree-bank/src/app/themes/peachtree-bank/scss/1-variables/_path.scss
+3. Created the font's font-faces within the peachtree-bank/src/app/themes/peachtree-bank/scss/3-generic folder and imported them as required.
 
 ### #4. Navigation & Layout
-1. Created a bundle file for the Accounts Transactions journey
-2. Added the bundle file to the app-routing.module with its path attributes
-3. Using the Backbase Design System, I added a navigational menu and the page layout
+1. Created a bundle file for the Accounts Transactions journey.
+2. Added the bundle file to the app-routing.module along with its path attributes
+3. Using the Backbase Design System, I added a navigational menu and the page layout.
 4. Modified the code accordingly by cleaning up unrequired code blocks
 
 ### #5. Navigation Submenu
-1. Inside the app.component.html file I added a Pockets <li> element within the “Transfers” dropdown menu
+1. I added a navigational link inside the app.component.html file within the “Transfers” dropdown menu
 
 ### #6. Accounts Summary (Adopt)
 1. I added mockProviders for the journey in the environment.ts file 
@@ -32,9 +33,9 @@ Within the peachtree-bank/src/app/themes directory, I adjusted the colours for t
 3. Added configurations for the journey in its bundle file (account-transactions-bundle.module.ts)
 
 ### #7. Transactions (Extend)
-1. I added routes for the journey in its bundle file
+1. I added routes for the journey in its bundle file (account-transactions-bundle.module.ts).
 2. Imported the routes within the imports array
-3. Modified the title of the transactions path by replacing data object's 'title' key with 'Transactions in the childrens array.
+3. Modified the title of the transactions path by replacing data object's 'title' key with 'Transactions' in the childrens array.
 
 ### #8. Pockets (Build)
 1. Generated an Angular Data Module for the Pockets journey from the pockets-openapi.zip file provided
